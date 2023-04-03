@@ -13,6 +13,9 @@ import Zegar from './screen/Zegar';
 const Tab = createMaterialTopTabNavigator()
 
 function MyTabNavigator() {
+
+  const [data, setData] = useState('')
+
   return (
     <Tab.Navigator>
       <Tab.Screen name="Login" component={LoginScreen} />

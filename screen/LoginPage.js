@@ -1,11 +1,41 @@
+import { useState } from 'react';
 import {
     View,
     Text,
     StyleSheet,
     Pressable
 } from 'react-native';
+import { event } from 'react-native-reanimated';
 
 export default function LoginScreen(){
+
+    const [loginData, setLoginData] = useState([
+        {typeField: 'nazwa', value: ''},
+        {typeField: 'haslo', value: ''},
+        {typeField: 'wiek', value: ''},
+        {typeField: 'email', value: ''},
+    ])
+
+    function onLoginDataChange(event){
+        let newValue = event.target.value
+        if (event.target.id == "wiek"){
+            let newNumber = parseInt(newValue)
+            if (newNumber <= 0){
+                return
+            }
+        }
+        
+
+        const newList = [...loginData];
+        const changeField = newList.find(
+            a => a.typeField == event.target.id
+        );
+        changeField.value = newValue
+        setLoginData(newList)
+    }
+
+
+
     return (
         <View style={styles.view}>
             <form style={styles.form}>
@@ -13,10 +43,18 @@ export default function LoginScreen(){
                     SIGN UP
                 </Text>
 
-                <input id='nazwa' type="text" placeholder='Nazwa' style={styles.input} />
-                <input id='haslo' type="password" placeholder='Hasło' style={styles.input}/>
-                <input id='wiek' type="text" placeholder='Wiek' style={styles.input}/>
-                <input id='email' type="text" placeholder='Email' style={styles.input}/>
+                <input 
+                onChange={onLoginDataChange}
+                id='nazwa' type="text" placeholder='Nazwa' style={styles.input} />
+                <input 
+                onChange={onLoginDataChange}
+                id='haslo' type="password" placeholder='Hasło' style={styles.input}/>
+                <input 
+                onChange={onLoginDataChange}
+                id='wiek' type="text" placeholder='Wiek' style={styles.input}/>
+                <input 
+                onChange={onLoginDataChange}
+                id='email' type="text" placeholder='Email' style={styles.input}/>
                 <Pressable style={styles.button}>
                     <Text style={{color: '#fff'}}>SING UP</Text>
                 </Pressable>
