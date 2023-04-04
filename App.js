@@ -6,19 +6,33 @@ import {
    createMaterialTopTabNavigator 
 } from '@react-navigation/material-top-tabs';
 
+import SignupScreen from './screen/SignupPage';
 import LoginScreen from './screen/LoginPage';
 import Kloce from './screen/Kloce';
 import Zegar from './screen/Zegar';
+import ProfilePage from './screen/ProfilePage'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Tab = createMaterialTopTabNavigator()
+//const Tab = createMaterialTopTabNavigator()
+const Tab = createDrawerNavigator()
 
 function MyTabNavigator() {
 
   const [data, setData] = useState('')
+  const [switchState, setSwitchState] = useState(false)
+  const LoginType = [["Login",LoginScreen],["Signup",SignupScreen],["Profile",ProfilePage]]
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Login" component={LoginScreen} />
+    <Tab.Navigator useLegacyImplementation>
+      <Tab.Screen name={LoginType[Number(switchState)][0]} component={LoginType[Number(switchState)][1]} initialParams={
+          {
+            'switchState': switchState,
+            'setSwitchState': setSwitchState,
+            'setProfileData': setData,
+            'userData': data
+        }
+        }
+      />
       <Tab.Screen name="Kloce" component={Kloce} />
       <Tab.Screen name= "Zegar" component={Zegar} />
     </Tab.Navigator>
