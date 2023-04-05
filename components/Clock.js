@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from 'react-native'
 
-function Clock() {
-  const [clockState, setClockState] = useState();
+export default function NewClock() {
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
 
-  useEffect(() => {
-    setInterval(() => {
-      const date = new Date();
-      setClockState(date.toLocaleTimeString());
+  useEffect(() =>{
+    const intervalId = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
     }, 1000);
+  return () => clearInterval(intervalId); 
   }, []);
 
-  return <div style={{ fontSize: "55px", margin: "60px" }}>{clockState}</div>;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.clock}>{time}</Text>
+    </View>
+  )
 }
 
-export default Clock;
+const styles = StyleSheet.create({
+  clock:{
+    fontSize: 40,
+  }
+});
