@@ -24,6 +24,7 @@ function MyTabNavigator() {
 
   return (
     <Tab.Navigator useLegacyImplementation>
+      <Tab.Screen name= "Zegar" component={Zegar} />
       <Tab.Screen name={LoginType[Number(switchState)][0]} component={LoginType[Number(switchState)][1]} initialParams={
           {
             'switchState': switchState,
@@ -34,7 +35,7 @@ function MyTabNavigator() {
         }
       />
       <Tab.Screen name="Kloce" component={Kloce} />
-      <Tab.Screen name= "Zegar" component={Zegar} />
+      
     </Tab.Navigator>
   );
 }

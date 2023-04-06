@@ -3,13 +3,14 @@ import {
     Text,
 } from 'react-native';
 import NewClock from '../components/Clock'
+import countryList  from '../data/countryList'
 
 export default function Zegar() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <NewClock></NewClock>
-        <Text>Dziś jeszcze dorobie 5 innych zegarow</Text>
-        <Text>😎</Text>
+        {countryList.map(info => <NewClock  clockCountry='en-GB' timeZone={info} />)}
       </View>
     )
   }
+
+
