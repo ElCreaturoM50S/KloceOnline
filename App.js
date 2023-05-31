@@ -10,6 +10,7 @@ import SignupScreen from './screen/SignupPage';
 import LoginScreen from './screen/LoginPage';
 import Kloce from './screen/Kloce';
 import Zegar from './screen/Zegar';
+import Kalendarz from './screen/Kalendarz';
 import ProfilePage from './screen/ProfilePage'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -24,8 +25,7 @@ function MyTabNavigator() {
 
   return (
     <Tab.Navigator useLegacyImplementation>
-      <Tab.Screen name= "Zegar" component={Zegar} />
-      <Tab.Screen name={LoginType[Number(switchState)][0]} component={LoginType[Number(switchState)][1]} initialParams={
+            <Tab.Screen name={LoginType[Number(switchState)][0]} component={LoginType[Number(switchState)][1]} initialParams={
           {
             'switchState': switchState,
             'setSwitchState': setSwitchState,
@@ -34,6 +34,8 @@ function MyTabNavigator() {
         }
         }
       />
+      <Tab.Screen name= "Zegar" component={Zegar} />
+      <Tab.Screen name = "Kalendarz" component={Kalendarz} />
       <Tab.Screen name="Kloce" component={Kloce} />
       
     </Tab.Navigator>
